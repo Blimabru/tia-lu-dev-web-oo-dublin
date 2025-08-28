@@ -1,0 +1,48 @@
+plugins {
+    id 'java'        // Ativa o suporte a projetos Java no Gradle
+    id 'application' // Permite executar a aplicação via 'gradle run'
+}
+
+// Informações básicas do projeto
+group = 'com.fooddelivery' // Nome do grupo (pacote base)
+version = '1.0.0'          // Versão do projeto
+
+// Define a classe principal da aplicação (com o método main)
+// Isso permite rodar o projeto com 'gradle run'
+application {
+    mainClass = 'com.fooddelivery.Main'
+}
+
+// Define onde estão os arquivos-fonte Java do projeto
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java'] // Caminho padrão para o código-fonte Java
+        }
+    }
+}
+
+// Configuração para gerar um JAR executável (fat JAR):
+// - Inclui todas as dependências no JAR final
+// - Define a classe principal no manifesto
+// - Evita arquivos duplicados
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'com.fooddelivery.Main' // Classe principal do JAR
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+// Tarefa para executar o JAR gerado diretamente
+// Comando: gradle runJar
+task runJar(type: JavaExec) {
+    group = 'application'
+    description = 'Executa o JAR gerado'
+    classpath = files("$buildDir/libs/${rootProject.name}-${version}.jar")
+    mainClass = 'com.fooddelivery.Main'
+}
