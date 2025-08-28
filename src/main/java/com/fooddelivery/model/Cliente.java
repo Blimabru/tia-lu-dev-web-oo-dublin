@@ -1,5 +1,6 @@
 package com.fooddelivery.model;
 
+import com.fooddelivery.util.Validador;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Cliente {
@@ -12,7 +13,7 @@ public class Cliente {
     // Construtor
     public Cliente(String nome, String telefone) {
         this.id = contador.getAndIncrement();
-        this.nome = nome;
+        this.nome = Validador.validarNome(nome);
         this.telefone = telefone;
     }
 
@@ -33,6 +34,8 @@ public class Cliente {
     // Setters
 
     public void setNome(String nome) {
+
+        Validador.validarNome(nome);
         this.nome = nome;
     }
 
