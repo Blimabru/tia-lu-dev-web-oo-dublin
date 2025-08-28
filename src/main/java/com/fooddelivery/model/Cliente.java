@@ -16,8 +16,8 @@ public class Cliente {
     // Construtor
     public Cliente(String nome, String telefone) {
         this.id = contador.getAndIncrement();
-        this.nome = Validador.validarNome(nome);
-        this.telefone = telefone;
+        this.nome = Validador.nomeCliente(nome);
+        this.telefone = Validador.telefone(telefone);
         clientes.add(this);
     }
 
@@ -38,13 +38,11 @@ public class Cliente {
     // Setters
 
     public void setNome(String nome) {
-
-        Validador.validarNome(nome);
-        this.nome = nome;
+        this.nome = Validador.nomeCliente(nome);
     }
 
     public void setTelefone(String telefone) {
-        this.telefone = telefone;
+        this.telefone = Validador.telefone(telefone);
     }
 
     public static List<Cliente> getListaClientes() {
