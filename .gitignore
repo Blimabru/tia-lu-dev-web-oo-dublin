@@ -1,0 +1,47 @@
+# =========================
+# Java / Gradle
+# =========================
+.gradle/
+build/
+
+# Arquivos de log
+*.log
+
+# =========================
+# IDEs
+# =========================
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# =========================
+# Sistema Operacional
+# =========================
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# =========================
+# Outros
+# =========================
+*.swp
+*.tmp
+*.bak
