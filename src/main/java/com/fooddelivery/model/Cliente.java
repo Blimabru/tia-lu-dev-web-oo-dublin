@@ -1,19 +1,13 @@
 package com.fooddelivery.model;
 
 import com.fooddelivery.util.Validador;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.List;
-import java.util.ArrayList;
 
 /**
  * Representa um cliente do sistema de delivery de alimentos.
  * 
- * Esta classe mantém informações sobre os clientes, como nome e telefone,
- * e gerencia a lista de todos os clientes cadastrados no sistema.
- * Cada cliente recebe um ID único gerado automaticamente.
- * 
- * Os dados do cliente são validados durante a criação e atualização
- * através da classe Validador.
+ * Esta classe mantém informações sobre os clientes, como identificador único,
+ * nome e telefone. Os dados do cliente são validados durante a criação e
+ * atualização através da classe Validador.
  */
 public class Cliente {
     /** Identificador único do cliente */
@@ -25,28 +19,20 @@ public class Cliente {
     /** Número de telefone do cliente */
     private String telefone;
 
-    /** Contador atômico para geração de IDs únicos sequenciais */
-    private static AtomicInteger contador = new AtomicInteger(1);
-
-    /** Lista que mantém referência a todos os clientes cadastrados */
-    private static List<Cliente> clientes = new ArrayList<>();
-
     /**
-     * Cria um novo cliente com nome e telefone especificados.
+     * Cria um novo cliente com ID, nome e telefone especificados.
      * 
-     * O cliente criado recebe um ID único e é automaticamente adicionado
-     * à lista de clientes do sistema. Os dados são validados antes de
-     * serem atribuídos.
+     * Os dados são validados antes de serem atribuídos.
      *
+     * @param id       Identificador único do cliente
      * @param nome     Nome do cliente
      * @param telefone Número de telefone do cliente
      * @throws IllegalArgumentException se o nome ou telefone forem inválidos
      */
-    public Cliente(String nome, String telefone) {
-        this.id = contador.getAndIncrement();
+    public Cliente(int id, String nome, String telefone) {
+        this.id = id;
         this.nome = Validador.nomeCliente(nome);
         this.telefone = Validador.telefone(telefone);
-        clientes.add(this);
     }
 
     /**
@@ -74,18 +60,6 @@ public class Cliente {
      */
     public String getTelefone() {
         return telefone;
-    }
-
-    /**
-     * Retorna uma cópia da lista de todos os clientes cadastrados no sistema.
-     * 
-     * Uma nova lista é criada para evitar modificações externas na lista
-     * interna de clientes.
-     *
-     * @return Lista com todos os clientes cadastrados
-     */
-    public static List<Cliente> getListaClientes() {
-        return new ArrayList<>(clientes);
     }
 
     /**
