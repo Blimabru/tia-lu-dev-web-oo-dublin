@@ -56,4 +56,17 @@ public class ClienteService {
     public List<Cliente> listarClientes() {
         return new ArrayList<>(clientes);
     }
+
+    /**
+     * Busca um cliente pelo ID
+     * 
+     * @param id ID do cliente a ser buscado
+     * @return Cliente encontrado ou null se não existir
+     */
+    public Cliente buscarClientePorId(int id) {
+        return clientes.stream()
+                .filter(cliente -> cliente.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 }
