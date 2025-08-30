@@ -14,10 +14,10 @@ public class CardapioService {
     public String cadastrarItemCardapio(String nome, BigDecimal preco) {
         ItemCardapio itemCardapio = new ItemCardapio(contador.getAndIncrement(), nome, preco);
         itensCardapio.add(itemCardapio);
-        return new StringBuilder().append("Cadastrado com Sucesso!\n")
-                .append("Item: ").append(nome)
+        return new StringBuilder().append("Cadastrado com Sucesso!\n\n")
+                .append("| Item: ").append(nome)
                 .append(" | Preço: R$ ").append(preco)
-                .append("\n\n")
+                .append("\n")
                 .toString();
     }
 
