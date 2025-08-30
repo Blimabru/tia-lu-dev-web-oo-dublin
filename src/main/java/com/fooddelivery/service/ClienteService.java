@@ -37,11 +37,11 @@ public class ClienteService {
         Cliente cliente = new Cliente(contador.getAndIncrement(), nome, telefone);
         clientes.add(cliente);
 
-        return new StringBuilder().append("Cadastrado com Sucesso!\n")
+        return new StringBuilder().append("\nCadastrado com Sucesso!\n\n")
                 .append(" | ID: ").append(cliente.getId())
                 .append(" Nome: ").append(nome)
                 .append(" | Telefone: ").append(telefone)
-                .append("\n\n")
+                .append("\n")
                 .toString();
     }
 
