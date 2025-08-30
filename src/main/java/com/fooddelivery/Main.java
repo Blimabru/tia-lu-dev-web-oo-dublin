@@ -7,6 +7,7 @@ package com.fooddelivery;
 import java.math.BigDecimal;
 import com.fooddelivery.model.Cliente;
 import com.fooddelivery.model.ItemCardapio;
+import com.fooddelivery.model.ItemPedido;
 import com.fooddelivery.service.ClienteService;
 import com.fooddelivery.service.PedidoService;
 import com.fooddelivery.service.CardapioService;
@@ -78,6 +79,23 @@ public class Main {
             System.out.println("| ID: " + pedido.getId() + " | Data: " + pedido.getData() + " | Status: "
                     + pedido.getStatus());
         }
+        System.out.println("--------------------------------------------------------");
+
+        System.out.println("\n\n-------------------------------");
+        System.out.println("Cadastrando 3 itens pedidos:");
+
+        ItemPedido i1 = new ItemPedido(20, new BigDecimal(10.398));
+        ItemPedido i2 = new ItemPedido(10, new BigDecimal(5.589));
+        ItemPedido i3 = new ItemPedido(5, new BigDecimal(2.542));
+
+        System.out.println("--------------------------------------------------------");
+        System.out.println("Lista de itens pedidos:");
+        System.out.println("--------------------------------------------------------");
+
+        System.out.println("| Quantidade: " + i1.getQuantidade() + " | Preço Unitário: " + i1.getPrecoUnit());
+        System.out.println("| Quantidade: " + i2.getQuantidade() + " | Preço Unitário: " + i2.getPrecoUnit());
+        System.out.println("| Quantidade: " + i3.getQuantidade() + " | Preço Unitário: " + i3.getPrecoUnit());
+
         System.out.println("--------------------------------------------------------");
     }
 }
