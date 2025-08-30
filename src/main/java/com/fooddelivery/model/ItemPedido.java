@@ -4,23 +4,34 @@ import com.fooddelivery.util.Validador;
 import java.math.BigDecimal;
 
 public class ItemPedido {
+    private ItemCardapio item; // Associação com ItemCardapio
     private int quantidade;
-    private BigDecimal precoUnit;
 
     // Construtor
-    public ItemPedido(int quantidade, BigDecimal precoUnit) {
+    public ItemPedido(ItemCardapio item, int quantidade) {
+        this.item = item;
         this.quantidade = Validador.quantidadePedido(quantidade);
-        this.precoUnit = Validador.preco(precoUnit);
+    }
+
+    /**
+     * Calcula o subtotal do item (preço × quantidade)
+     */
+    public BigDecimal calcularSubtotal() {
+        return item.getPreco().multiply(BigDecimal.valueOf(quantidade));
     }
 
     // Getters:
+
+    public ItemCardapio getItem() {
+        return item;
+    }
 
     public int getQuantidade() {
         return quantidade;
     }
 
-    public BigDecimal getPrecoUnit() {
-        return precoUnit;
+    public BigDecimal getPrecoUnitario() {
+        return item.getPreco();
     }
 
     // Setters
@@ -29,7 +40,7 @@ public class ItemPedido {
         this.quantidade = Validador.quantidadePedido(quantidade);
     }
 
-    public void setPrecoUnit(BigDecimal precoUnit) {
-        this.precoUnit = Validador.preco(precoUnit);
+    public void setItem(ItemCardapio item) {
+        this.item = item;
     }
 }
