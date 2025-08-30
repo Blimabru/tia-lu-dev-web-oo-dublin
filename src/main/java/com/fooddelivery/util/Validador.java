@@ -118,6 +118,25 @@ public class Validador {
     }
 
     /**
+     * Valida a quantidade de itens inseridos no pedido.
+     * 
+     * Regra aplicada:
+     * - A quantidade não pode ser zero ou um valor negativo.
+     * 
+     * @param quantidade Quantidade a ser validada
+     * @return Retorna a quantidade validada
+     * @throws IllegalArgumentException caso a quantidade seja nula ou menor/igual a
+     *                                  zero
+     */
+
+    public static int quantidadePedido(int quantidade) {
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException("A quantidade de itens não pode ser menor ou igual a zero");
+        }
+        return quantidade;
+    }
+
+    /**
      * Verifica se um texto é nulo ou vazio.
      *
      * @param texto Texto a ser verificado
