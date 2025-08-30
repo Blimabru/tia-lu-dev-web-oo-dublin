@@ -2,20 +2,13 @@ package com.fooddelivery.model;
 
 import com.fooddelivery.util.Validador;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Representa um item do cardápio no sistema de delivery de alimentos.
  * 
  * Esta classe mantém informações sobre os itens disponíveis para pedido,
- * como nome e preço, e gerencia a lista de todos os itens cadastrados no
- * sistema.
- * Cada item recebe um ID único gerado automaticamente.
- * 
- * Os dados do item são validados durante a criação e atualização
- * através da classe Validador.
+ * como identificador único, nome e preço. Os dados do item são validados
+ * durante a criação e atualização através da classe Validador.
  */
 public class ItemCardapio {
     /** Identificador único do item */
@@ -27,28 +20,20 @@ public class ItemCardapio {
     /** Preço do item */
     private BigDecimal preco;
 
-    /** Contador atômico para geração de IDs únicos sequenciais */
-    private static AtomicInteger contador = new AtomicInteger(1);
-
-    /** Lista que mantém referência a todos os itens cadastrados */
-    private static List<ItemCardapio> itensCardapio = new ArrayList<>();
-
     /**
-     * Cria um novo item de cardápio com nome e preço especificados.
+     * Cria um novo item de cardápio com id, nome e preço especificados.
      * 
-     * O item criado recebe um ID único e é automaticamente adicionado
-     * à lista de itens do cardápio. Os dados são validados antes de
-     * serem atribuídos.
+     * Os dados são validados antes de serem atribuídos.
      *
+     * @param id    Identificador único do item
      * @param nome  Nome do item
      * @param preco Preço do item
      * @throws IllegalArgumentException se o nome ou preço forem inválidos
      */
-    public ItemCardapio(String nome, BigDecimal preco) {
-        this.id = contador.getAndIncrement();
+    public ItemCardapio(int id, String nome, BigDecimal preco) {
+        this.id = id;
         this.nome = Validador.itemCardapio(nome);
         this.preco = Validador.preco(preco);
-        itensCardapio.add(this);
     }
 
     /**
@@ -76,18 +61,6 @@ public class ItemCardapio {
      */
     public BigDecimal getPreco() {
         return preco;
-    }
-
-    /**
-     * Retorna uma cópia da lista de todos os itens cadastrados no cardápio.
-     * 
-     * Uma nova lista é criada para evitar modificações externas na lista
-     * interna de itens.
-     *
-     * @return Lista com todos os itens cadastrados no cardápio
-     */
-    public static List<ItemCardapio> getListaCardapio() {
-        return new ArrayList<>(itensCardapio);
     }
 
     /**
