@@ -76,6 +76,64 @@ Estamos em constante evolução, trazendo novas funcionalidades, automações e 
 
 ---
 
+## ▶️ Como executar o projeto
+
+Este projeto utiliza o **Gradle Wrapper** para facilitar a execução, sem exigir que você tenha o Gradle instalado no seu sistema. O wrapper garante que todos usem a mesma versão do Gradle e simplifica o processo de build e execução.
+
+### Por que usar o Gradle?
+
+Optamos por usar o Gradle (e seu wrapper) para evitar problemas comuns de configuração de ambiente Java, como:
+- Ter que configurar manualmente a pasta e a versão do JDK instalado no sistema de cada desenvolvedor.
+- Garantir que todos usem a mesma versão de build, independente do sistema operacional.
+- Facilitar a execução do projeto em qualquer máquina, sem necessidade de instalar ferramentas extras além do Java.
+
+Com o Gradle Wrapper, basta ter o Java instalado (JDK 17+ recomendado) e rodar os comandos abaixo, sem se preocupar com variáveis de ambiente ou configurações específicas do sistema.
+
+### O que é o Gradle Wrapper?
+
+O Gradle Wrapper é um conjunto de arquivos (`gradlew`, `gradlew.bat` e a pasta `gradle/wrapper`) que permite rodar comandos Gradle mesmo que você não tenha o Gradle instalado globalmente.
+- **Windows:** usa o arquivo `gradlew.bat`
+- **Linux/Mac:** usa o arquivo `gradlew`
+
+### Passos para rodar o projeto
+
+1. **Abra um terminal na pasta do projeto**  
+   Exemplo:
+   ```
+   cd E:\Usuarios\Bruno\Documents\VSCode\Java\tia-lu-dev-web-oo-dublin
+   ```
+
+2. **Execute o comando apropriado para seu sistema operacional:**
+
+   - **No Windows (PowerShell ou CMD):**
+     ```
+     .\gradlew run
+     ```
+   - **No Linux/Mac:**
+     ```
+     ./gradlew run
+     ```
+
+   > **Importante:**  
+   > Sempre use o prefixo `./` ou `.\` para executar scripts do diretório atual.
+
+3. **Interaja com o sistema**  
+   O menu será exibido no terminal e você poderá digitar as opções conforme solicitado.
+
+### Dicas
+
+- Dependendo das configurações da sua IDE, a execução interativa pode não funcionar corretamente ao usar o botão "Run". Por isso, prefira rodar o projeto pelo terminal para garantir que a entrada de dados funcione como esperado.
+- Se for a primeira execução, o wrapper pode baixar a versão correta do Gradle automaticamente.
+
+### Problemas comuns
+
+- **Comando não encontrado:**  
+  Certifique-se de estar usando `.\gradlew` no Windows ou `./gradlew` no Linux/Mac.
+- **Entrada não reconhecida:**  
+  Sempre execute pelo terminal, não pela interface gráfica da IDE.
+
+---
+
 ## 🤝 Contribuição
 
 Este projeto é desenvolvido em equipe, prezando pela **colaboração, clareza e organização**.  
