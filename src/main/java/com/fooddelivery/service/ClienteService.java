@@ -4,6 +4,7 @@ import com.fooddelivery.model.Cliente;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.lang.StringBuilder;
 
 /**
  * Serviço responsável pelo gerenciamento de clientes no sistema de delivery de
@@ -32,10 +33,16 @@ public class ClienteService {
      * @return O objeto Cliente criado e cadastrado no sistema
      * @throws IllegalArgumentException se o nome ou telefone forem inválidos
      */
-    public Cliente cadastrarCliente(String nome, String telefone) {
+    public String cadastrarCliente(String nome, String telefone) {
         Cliente cliente = new Cliente(contador.getAndIncrement(), nome, telefone);
         clientes.add(cliente);
-        return cliente;
+
+        return new StringBuilder().append("Cadastrado com Sucesso!\n")
+                .append(" | ID: ").append(cliente.getId())
+                .append(" Nome: ").append(nome)
+                .append(" | Telefone: ").append(telefone)
+                .append("\n\n")
+                .toString();
     }
 
     /**
