@@ -24,4 +24,17 @@ public class CardapioService {
     public List<ItemCardapio> listarCardapio() {
         return new ArrayList<>(itensCardapio);
     }
+
+    /**
+     * Busca um item do cardápio pelo ID
+     * 
+     * @param id ID do item a ser buscado
+     * @return ItemCardapio encontrado ou null se não existir
+     */
+    public ItemCardapio buscarItemPorId(int id) {
+        return itensCardapio.stream()
+                .filter(item -> item.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 }
