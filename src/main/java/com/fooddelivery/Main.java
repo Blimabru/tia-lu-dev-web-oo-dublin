@@ -1,71 +1,84 @@
 /**
- * Esse arquivo atualmente só serve para testes dos métodos implementados.
+ * Classe principal do sistema FoodDelivery.
+ * Responsável por inicializar o sistema e gerenciar o menu principal.
  */
 
 package com.fooddelivery;
 
+import java.util.Scanner;
+import com.fooddelivery.service.ClienteService;
+import com.fooddelivery.service.CardapioService;
+import com.fooddelivery.service.PedidoService;
+import com.fooddelivery.util.Input;
 import com.fooddelivery.view.TelaInicial;
+import com.fooddelivery.view.MenuCardapio;
+import com.fooddelivery.view.MenuCliente;
+import com.fooddelivery.view.MenuPedido;
 
 public class Main {
+    private static Scanner teclado = new Scanner(System.in);
+
     public static void main(String args[]) {
+        ClienteService clienteService = new ClienteService();
+        CardapioService cardapioService = new CardapioService();
+        PedidoService pedidoService = new PedidoService();
 
-        // Tenta configurar o terminal para usar caracteres UTF-8:
-        try {
-            System.setOut(new java.io.PrintStream(System.out, true, "UTF-8"));
-        } catch (java.io.UnsupportedEncodingException e) {
-            // Se falhar, ignora configuração e continua execução da aplicação
-            System.err.println("Erro ao configurar terminal para utilizar UTF-8: " + e.getMessage());
-        }
+        int opcaoEscolhida;
 
-        TelaInicial.exibir();
+        do {
+            TelaInicial.exibir();
+            opcaoEscolhida = teclado.nextInt();
+            Input.limparBuffer(teclado);
 
-        int opcaoEscolhida = 0;
+            switch (opcaoEscolhida) {
+                // GERENCIAMENTO DE CARDÁPIO
+                case 1:
+                    MenuCardapio.cadastrarItem(teclado, cardapioService);
+                    break;
+                case 2:
+                    MenuCardapio.listarItens(teclado, cardapioService);
+                    break;
 
-        switch (opcaoEscolhida) {
-            // GERENCIAMENTO DE CARDÁPIO
-            case 1:
-                System.out.println("Cadastrando novo item no cardápio...");
-                break;
-            case 2:
-                System.out.println("Listando itens do cardápio...");
-                break;
+                // GERENCIAMENTO DE CLIENTES
+                case 3:
+                    MenuCliente.cadastrarCliente(teclado, clienteService);
+                    break;
+                case 4:
+                    MenuCliente.listarClientes(teclado, clienteService);
+                    break;
 
-            // GERENCIAMENTO DE CLIENTES
-            case 3:
-                System.out.println("Cadastrando novo cliente...");
-                break;
-            case 4:
-                System.out.println("Listando clientes cadastrados...");
-                break;
+                // GERENCIAMENTO DE PEDIDOS
+                case 5:
+                    MenuPedido.registrarPedido(teclado, pedidoService);
+                    break;
+                case 6:
+                    MenuPedido.atualizarEstado(teclado, pedidoService);
+                    break;
+                case 7:
+                    MenuPedido.consultarPedidoPorStatus(teclado, pedidoService);
+                    break;
 
-            // GERENCIAMENTO DE PEDIDOS
-            case 5:
-                System.out.println("Registrando novo pedido...");
-                break;
-            case 6:
-                System.out.println("Atualizando status do pedido...");
-                break;
-            case 7:
-                System.out.println("Consultando pedidos por status...");
-                break;
+                // RELATÓRIOS
+                case 8:
+                    MenuRelatorio.relatorioSimplificado(teclado, relatorioService);
+                    break;
+                case 9:
+                    MenuRelatorio.relatorioDetalhado(teclado, relatorioService);
+                    break;
 
-            // RELATÓRIOS
-            case 8:
-                System.out.println("Gerando relatório simplificado...");
-                break;
-            case 9:
-                System.out.println("Gerando relatório detalhado...");
-                break;
+                // ENCERRAR SISTEMA
+                case 10:
+                    System.out.println("Encerrando sistema...");
+                    break;
 
-            // ENCERRAR SISTEMA
-            case 10:
-                System.out.println("Encerrando sistema...");
-                break;
+                default:
+                    System.out.println("Opcao invalida");
 
-            default:
-                System.out.println("Opção inválida");
-                break;
-        }
+                    System.out.println("\nPressione Enter para continuar...");
+                    teclado.nextLine();
+                    break;
+            }
+        } while (opcaoEscolhida != 10);
 
     }
 }
