@@ -5,12 +5,13 @@
 package com.fooddelivery;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import com.fooddelivery.model.Cliente;
 import com.fooddelivery.model.ItemCardapio;
 import com.fooddelivery.service.ClienteService;
+import com.fooddelivery.service.PedidoService;
 import com.fooddelivery.service.CardapioService;
 import com.fooddelivery.model.Pedido;
+import com.fooddelivery.model.Pedido.StatusPedido;
 
 public class Main {
 
@@ -18,6 +19,7 @@ public class Main {
 
         ClienteService clientService = new ClienteService();
         CardapioService cardapioService = new CardapioService();
+        PedidoService pedidoService = new PedidoService();
 
         System.out.println("-------------------------------");
         System.out.println("Cadastrando 5 clientes:");
@@ -59,20 +61,23 @@ public class Main {
         System.out.println("--------------------------------------------------------");
 
         System.out.println("\n\n-------------------------------");
-        System.out.println("Realizando 3 pedidos:");
+        System.out.println("Realizando 6 pedidos:");
 
-        Pedido p1 = new Pedido(1, LocalDate.now(), Pedido.StatusPedido.ACEITO);
-        Pedido p2 = new Pedido(2, LocalDate.now(), Pedido.StatusPedido.PREPARANDO);
-        Pedido p3 = new Pedido(3, LocalDate.now(), Pedido.StatusPedido.ENTREGUE);
+        pedidoService.criarPedido(StatusPedido.ACEITO);
+        pedidoService.criarPedido(StatusPedido.PREPARANDO);
+        pedidoService.criarPedido(StatusPedido.FEITO);
+        pedidoService.criarPedido(StatusPedido.AGUARDANDO_ENTREGADOR);
+        pedidoService.criarPedido(StatusPedido.SAIU_PARA_ENTREGA);
+        pedidoService.criarPedido(StatusPedido.ENTREGUE);
 
         System.out.println("--------------------------------------------------------");
-        System.out.println("Lista de pedidos efetuados: ");
+        System.out.println("Lista de pedidos efetuados: (Total = " + pedidoService.listarPedidos().size() + ")");
         System.out.println("--------------------------------------------------------");
 
-        System.out.println("ID: " + p1.getId() + " | Data: " + p1.getData() + " | Status: " + p1.getStatus());
-        System.out.println("ID: " + p2.getId() + " | Data: " + p2.getData() + " | Status: " + p2.getStatus());
-        System.out.println("ID: " + p3.getId() + " | Data: " + p3.getData() + " | Status: " + p3.getStatus());
-
+        for (Pedido pedido : pedidoService.listarPedidos()) {
+            System.out.println("| ID: " + pedido.getId() + " | Data: " + pedido.getData() + " | Status: "
+                    + pedido.getStatus());
+        }
         System.out.println("--------------------------------------------------------");
     }
 }
