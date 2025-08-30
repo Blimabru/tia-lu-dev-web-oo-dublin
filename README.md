@@ -76,26 +76,12 @@ Estamos em constante evolução, trazendo novas funcionalidades, automações e 
 
 ---
 
+
 ## ▶️ Como executar o projeto
 
-Este projeto utiliza o **Gradle Wrapper** para facilitar a execução, sem exigir que você tenha o Gradle instalado no seu sistema. O wrapper garante que todos usem a mesma versão do Gradle e simplifica o processo de build e execução.
+Este projeto utiliza o **Gradle Wrapper** para facilitar a geração do JAR executável, sem exigir que você tenha o Gradle instalado no seu sistema. O wrapper garante que todos usem a mesma versão do Gradle e simplifica o processo de build.
 
-### Por que usar o Gradle?
-
-Optamos por usar o Gradle (e seu wrapper) para evitar problemas comuns de configuração de ambiente Java, como:
-- Ter que configurar manualmente a pasta e a versão do JDK instalado no sistema de cada desenvolvedor.
-- Garantir que todos usem a mesma versão de build, independente do sistema operacional.
-- Facilitar a execução do projeto em qualquer máquina, sem necessidade de instalar ferramentas extras além do Java.
-
-Com o Gradle Wrapper, basta ter o Java instalado (JDK 17+ recomendado) e rodar os comandos abaixo, sem se preocupar com variáveis de ambiente ou configurações específicas do sistema.
-
-### O que é o Gradle Wrapper?
-
-O Gradle Wrapper é um conjunto de arquivos (`gradlew`, `gradlew.bat` e a pasta `gradle/wrapper`) que permite rodar comandos Gradle mesmo que você não tenha o Gradle instalado globalmente.
-- **Windows:** usa o arquivo `gradlew.bat`
-- **Linux/Mac:** usa o arquivo `gradlew`
-
-### Passos para rodar o projeto
+### Passos para rodar o sistema
 
 1. **Abra um terminal na pasta do projeto**  
    Exemplo:
@@ -103,34 +89,52 @@ O Gradle Wrapper é um conjunto de arquivos (`gradlew`, `gradlew.bat` e a pasta 
    cd E:\Usuarios\Bruno\Documents\VSCode\Java\tia-lu-dev-web-oo-dublin
    ```
 
-2. **Execute o comando apropriado para seu sistema operacional:**
+
+2. **Gere o JAR executável usando o Gradle Wrapper:**
 
    - **No Windows (PowerShell ou CMD):**
      ```
-     .\gradlew run
+     .\gradlew jar
      ```
-   - **No Linux/Mac:**
+   - **No Linux:**
      ```
-     ./gradlew run
+     ./gradlew jar
+     ```
+   - **No Mac (OS X):**
+     ```
+     ./gradlew jar
      ```
 
-   > **Importante:**  
-   > Sempre use o prefixo `./` ou `.\` para executar scripts do diretório atual.
+   O arquivo JAR será gerado em `build/libs/`.
 
-3. **Interaja com o sistema**  
-   O menu será exibido no terminal e você poderá digitar as opções conforme solicitado.
+3. **Execute o sistema usando o Java:**
+
+   - **No Windows:**
+     ```
+     java -jar build\libs\tia-lu-dev-web-oo-dublin-1.0.0.jar
+     ```
+   - **No Linux:**
+     ```
+     java -jar build/libs/tia-lu-dev-web-oo-dublin-1.0.0.jar
+     ```
+   - **No Mac (OS X):**
+     ```
+     java -jar build/libs/tia-lu-dev-web-oo-dublin-1.0.0.jar
+     ```
+
+4. **Interaja normalmente com o menu no terminal!**
 
 ### Dicas
 
-- Dependendo das configurações da sua IDE, a execução interativa pode não funcionar corretamente ao usar o botão "Run". Por isso, prefira rodar o projeto pelo terminal para garantir que a entrada de dados funcione como esperado.
 - Se for a primeira execução, o wrapper pode baixar a versão correta do Gradle automaticamente.
+- O menu e a entrada de dados funcionarão corretamente em qualquer terminal usando o comando `java -jar ...`.
 
 ### Problemas comuns
 
 - **Comando não encontrado:**  
   Certifique-se de estar usando `.\gradlew` no Windows ou `./gradlew` no Linux/Mac.
 - **Entrada não reconhecida:**  
-  Sempre execute pelo terminal, não pela interface gráfica da IDE.
+  Tente executar o JAR pelo terminal, não pela interface gráfica da IDE.
 
 ---
 
