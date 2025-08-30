@@ -6,22 +6,20 @@
 package com.fooddelivery;
 
 import java.util.Scanner;
-import com.fooddelivery.service.ClienteService;
-import com.fooddelivery.service.CardapioService;
-import com.fooddelivery.service.PedidoService;
+import com.fooddelivery.service.CentralDados;
 import com.fooddelivery.util.Input;
 import com.fooddelivery.view.TelaInicial;
 import com.fooddelivery.view.MenuCardapio;
 import com.fooddelivery.view.MenuCliente;
 import com.fooddelivery.view.MenuPedido;
+import com.fooddelivery.view.MenuRelatorio;
 
 public class Main {
     private static Scanner teclado = new Scanner(System.in);
 
     public static void main(String args[]) {
-        ClienteService clienteService = new ClienteService();
-        CardapioService cardapioService = new CardapioService();
-        PedidoService pedidoService = new PedidoService();
+        // Usar a central de dados única
+        CentralDados centralDados = CentralDados.getInstancia();
 
         int opcaoEscolhida;
 
@@ -33,37 +31,37 @@ public class Main {
             switch (opcaoEscolhida) {
                 // GERENCIAMENTO DE CARDÁPIO
                 case 1:
-                    MenuCardapio.cadastrarItem(teclado, cardapioService);
+                    MenuCardapio.cadastrarItem(teclado, centralDados.getCardapioService());
                     break;
                 case 2:
-                    MenuCardapio.listarItens(teclado, cardapioService);
+                    MenuCardapio.listarItens(teclado, centralDados.getCardapioService());
                     break;
 
                 // GERENCIAMENTO DE CLIENTES
                 case 3:
-                    MenuCliente.cadastrarCliente(teclado, clienteService);
+                    MenuCliente.cadastrarCliente(teclado, centralDados.getClienteService());
                     break;
                 case 4:
-                    MenuCliente.listarClientes(teclado, clienteService);
+                    MenuCliente.listarClientes(teclado, centralDados.getClienteService());
                     break;
 
                 // GERENCIAMENTO DE PEDIDOS
                 case 5:
-                    MenuPedido.registrarPedido(teclado, pedidoService);
+                    MenuPedido.registrarPedido(teclado, centralDados.getPedidoService(), centralDados.getClienteService(), centralDados.getCardapioService());
                     break;
                 case 6:
-                    MenuPedido.atualizarEstado(teclado, pedidoService);
+                    MenuPedido.atualizarEstado(teclado, centralDados.getPedidoService());
                     break;
                 case 7:
-                    MenuPedido.consultarPedidoPorStatus(teclado, pedidoService);
+                    MenuPedido.consultarPedidoPorStatus(teclado, centralDados.getPedidoService());
                     break;
 
                 // RELATÓRIOS
                 case 8:
-                    MenuRelatorio.relatorioSimplificado(teclado, relatorioService);
+                    MenuRelatorio.relatorioSimplificado(teclado, centralDados.getRelatorioService());
                     break;
                 case 9:
-                    MenuRelatorio.relatorioDetalhado(teclado, relatorioService);
+                    MenuRelatorio.relatorioDetalhado(teclado, centralDados.getRelatorioService());
                     break;
 
                 // ENCERRAR SISTEMA
