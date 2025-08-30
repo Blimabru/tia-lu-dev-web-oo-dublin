@@ -1,6 +1,7 @@
 package com.fooddelivery.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Pedido {
     private int id;
@@ -8,7 +9,7 @@ public class Pedido {
     private StatusPedido status;
 
     // Construtor
-    public Pedido(int id, LocalDate data, StatusPedido status) {
+    public Pedido(int id, StatusPedido status) {
         this.id = id;
         this.data = LocalDate.now();
         this.status = status;
@@ -29,15 +30,17 @@ public class Pedido {
         return id;
     }
 
-    public LocalDate getData() {
-        return data;
+    public String getData() {
+        DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dataFormatada = data.format(formatoData);
+        return dataFormatada;
     }
 
     public StatusPedido getStatus() {
         return status;
     }
 
-    // Setters:
+    // Setter:
 
     public void setStatus(StatusPedido status) {
         this.status = status;
