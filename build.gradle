@@ -13,6 +13,11 @@ application {
     mainClass = 'com.fooddelivery.Main'
 }
 
+// Configuração para permitir entrada interativa durante 'gradle run'
+run {
+    standardInput = System.in
+}
+
 // Define onde estão os arquivos-fonte Java do projeto
 sourceSets {
     main {
