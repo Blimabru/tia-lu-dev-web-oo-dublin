@@ -2,14 +2,15 @@
  * Esse arquivo atualmente só serve para testes dos métodos implementados.
  */
 
-
 package com.fooddelivery;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import com.fooddelivery.model.Cliente;
 import com.fooddelivery.model.ItemCardapio;
 import com.fooddelivery.service.ClienteService;
 import com.fooddelivery.service.CardapioService;
+import com.fooddelivery.model.Pedido;
 
 public class Main {
 
@@ -55,6 +56,23 @@ public class Main {
             System.out.println("| ID: " + itemCardapio.getId() + " | Item: " + itemCardapio.getNome() + " | Preço: "
                     + itemCardapio.getPreco());
         }
+        System.out.println("--------------------------------------------------------");
+
+        System.out.println("\n\n-------------------------------");
+        System.out.println("Realizando 3 pedidos:");
+
+        Pedido p1 = new Pedido(1, LocalDate.now(), Pedido.StatusPedido.ACEITO);
+        Pedido p2 = new Pedido(2, LocalDate.now(), Pedido.StatusPedido.PREPARANDO);
+        Pedido p3 = new Pedido(3, LocalDate.now(), Pedido.StatusPedido.ENTREGUE);
+
+        System.out.println("--------------------------------------------------------");
+        System.out.println("Lista de pedidos efetuados: ");
+        System.out.println("--------------------------------------------------------");
+
+        System.out.println("ID: " + p1.getId() + " | Data: " + p1.getData() + " | Status: " + p1.getStatus());
+        System.out.println("ID: " + p2.getId() + " | Data: " + p2.getData() + " | Status: " + p2.getStatus());
+        System.out.println("ID: " + p3.getId() + " | Data: " + p3.getData() + " | Status: " + p3.getStatus());
+
         System.out.println("--------------------------------------------------------");
     }
 }
