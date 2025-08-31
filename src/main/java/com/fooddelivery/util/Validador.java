@@ -125,10 +125,8 @@ public class Validador {
      * 
      * @param quantidade Quantidade a ser validada
      * @return Retorna a quantidade validada
-     * @throws IllegalArgumentException caso a quantidade seja nula ou menor/igual a
-     *                                  zero
+     * @throws IllegalArgumentException caso a quantidade seja menor ou igual a zero
      */
-
     public static int quantidadePedido(int quantidade) {
         if (quantidade <= 0) {
             throw new IllegalArgumentException("A quantidade de itens não pode ser menor ou igual a zero");
