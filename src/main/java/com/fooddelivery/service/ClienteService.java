@@ -11,9 +11,9 @@ import java.lang.StringBuilder;
  * alimentos.
  * 
  * Esta classe implementa operações de negócio relacionadas aos clientes, como
- * cadastro, listagem e gerenciamento do ciclo de vida dos objetos Cliente.
- * Mantém uma lista centralizada de todos os clientes do sistema e controla
- * a geração de identificadores únicos para cada cliente.
+ * cadastro, listagem e busca. Mantém uma lista centralizada de todos os
+ * clientes do sistema e controla a geração de identificadores únicos para
+ * cada cliente.
  */
 public class ClienteService {
     /** Contador atômico para geração de IDs únicos sequenciais */
@@ -25,12 +25,12 @@ public class ClienteService {
     /**
      * Cadastra um novo cliente no sistema com nome e telefone especificados.
      * 
-     * Gera automaticamente um ID único para o cliente e o adiciona à lista
-     * de clientes do sistema.
+     * Gera automaticamente um ID único para o cliente, o adiciona à lista
+     * de clientes do sistema e retorna uma mensagem de confirmação formatada.
      *
      * @param nome     Nome do cliente a ser cadastrado
      * @param telefone Número de telefone do cliente
-     * @return O objeto Cliente criado e cadastrado no sistema
+     * @return Mensagem de confirmação do cadastro formatada
      * @throws IllegalArgumentException se o nome ou telefone forem inválidos
      */
     public String cadastrarCliente(String nome, String telefone) {
@@ -58,7 +58,10 @@ public class ClienteService {
     }
 
     /**
-     * Busca um cliente pelo ID
+     * Busca um cliente pelo ID especificado.
+     * 
+     * Utiliza stream para encontrar o primeiro cliente que corresponda
+     * ao ID fornecido.
      * 
      * @param id ID do cliente a ser buscado
      * @return Cliente encontrado ou null se não existir
