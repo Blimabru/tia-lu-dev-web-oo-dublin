@@ -5,15 +5,38 @@ import com.fooddelivery.model.ItemPedido;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * Serviço responsável pela geração de relatórios no sistema de delivery de
+ * alimentos.
+ * 
+ * Esta classe oferece funcionalidades para gerar relatórios simplificados e
+ * detalhados
+ * dos pedidos realizados no dia atual. Os relatórios incluem informações como
+ * total
+ * de pedidos, valores arrecadados e detalhes específicos de cada pedido.
+ */
 public class RelatorioService {
 
+    /** Serviço de pedidos usado para obter dados dos relatórios */
     private PedidoService pedidoService;
 
+    /**
+     * Cria uma nova instância do serviço de relatórios.
+     * 
+     * @param pedidoService Serviço de pedidos necessário para obter dados
+     */
     public RelatorioService(PedidoService pedidoService) {
         this.pedidoService = pedidoService;
     }
 
-    // Gera relatório simplificado com resumo do dia
+    /**
+     * Gera um relatório simplificado com resumo dos pedidos do dia atual.
+     * 
+     * O relatório inclui total de pedidos, valor total arrecadado e valor
+     * médio por pedido. É formatado de forma concisa para visualização rápida.
+     *
+     * @return String formatada contendo o relatório simplificado do dia
+     */
     public String gerarRelatorioSimplificado() {
         List<Pedido> pedidosHoje = pedidoService.listarPedidosHoje();
 
@@ -42,7 +65,16 @@ public class RelatorioService {
         return relatorio.toString();
     }
 
-    // Gera relatório detalhado com lista de todos os pedidos do dia
+    /**
+     * Gera um relatório detalhado com lista completa de todos os pedidos do dia
+     * atual.
+     * 
+     * O relatório inclui informações detalhadas de cada pedido como ID, data/hora,
+     * dados do cliente, status, itens pedidos com quantidades e preços, e totais
+     * individuais. Também apresenta um resumo geral ao final.
+     *
+     * @return String formatada contendo o relatório detalhado do dia
+     */
     public String gerarRelatorioDetalhado() {
         List<Pedido> pedidosHoje = pedidoService.listarPedidosHoje();
 
