@@ -11,9 +11,34 @@ import com.fooddelivery.model.Cliente;
 import com.fooddelivery.model.ItemCardapio;
 import com.fooddelivery.model.Pedido.StatusPedido;
 
+/**
+ * Classe responsável pela interface de usuário para gerenciamento de pedidos.
+ * 
+ * Esta classe contém métodos estáticos que implementam as telas e funcionalidades
+ * relacionadas aos pedidos do sistema, incluindo registro de novos pedidos,
+ * atualização de status e consultas. Faz parte da camada de apresentação (view)
+ * e gerencia as interações mais complexas do sistema através do terminal.
+ */
 public class MenuPedido {
 
-    // Registrar novo pedido
+    /**
+     * Exibe a tela de registro de novo pedido.
+     * 
+     * Implementa um fluxo completo de criação de pedido que inclui:
+     * 1. Verificação de pré-requisitos (clientes e itens cadastrados)
+     * 2. Seleção do cliente
+     * 3. Criação do pedido
+     * 4. Adição iterativa de itens
+     * 5. Finalização com resumo
+     * 
+     * O método valida todas as entradas e permite ao usuário adicionar múltiplos
+     * itens antes de finalizar o pedido.
+     *
+     * @param teclado         Scanner para leitura de dados do usuário
+     * @param pedidoService   Serviço responsável pelo gerenciamento de pedidos
+     * @param clienteService  Serviço responsável pelo gerenciamento de clientes
+     * @param cardapioService Serviço responsável pelo gerenciamento do cardápio
+     */
     public static void registrarPedido(Scanner teclado, PedidoService pedidoService, ClienteService clienteService, CardapioService cardapioService) {
         System.out.println("\n=== REGISTRAR NOVO PEDIDO ===\n");
 
@@ -106,7 +131,17 @@ public class MenuPedido {
         teclado.nextLine();
     }
 
-    // Atualizar status do pedido
+    /**
+     * Exibe a tela de atualização de status de pedido.
+     * 
+     * Lista todos os pedidos existentes e permite ao usuário selecionar um
+     * para atualizar seu status. O método identifica automaticamente qual é
+     * o próximo status válido na sequência e solicita confirmação do usuário.
+     * Respeita as regras de transição de status definidas no modelo de negócio.
+     *
+     * @param teclado       Scanner para leitura de dados do usuário
+     * @param pedidoService Serviço responsável pelo gerenciamento de pedidos
+     */
     public static void atualizarEstado(Scanner teclado, PedidoService pedidoService) {
         System.out.println("\n=== ATUALIZAR STATUS PEDIDO ===\n");
 
@@ -160,7 +195,16 @@ public class MenuPedido {
         teclado.nextLine();
     }
 
-    // Consultar pedidos por status
+    /**
+     * Exibe a tela de consulta de pedidos por status.
+     * 
+     * Apresenta uma lista com todos os status possíveis e permite ao usuário
+     * selecionar um para visualizar todos os pedidos que possuem aquele status.
+     * Útil para acompanhar pedidos em diferentes etapas do processo de entrega.
+     *
+     * @param teclado       Scanner para leitura de dados do usuário
+     * @param pedidoService Serviço responsável pelo gerenciamento de pedidos
+     */
     public static void consultarPedidoPorStatus(Scanner teclado, PedidoService pedidoService) {
         System.out.println("\n=== CONSULTAR PEDIDOS POR STATUS ===\n");
 
@@ -200,7 +244,15 @@ public class MenuPedido {
         teclado.nextLine();
     }
 
-    // Método auxiliar para obter próximo status
+    /**
+     * Determina qual é o próximo status válido na sequência de um pedido.
+     * 
+     * Implementa a lógica de transição sequencial dos status de pedido:
+     * ACEITO → PREPARANDO → FEITO → AGUARDANDO_ENTREGADOR → SAIU_PARA_ENTREGA → ENTREGUE
+     * 
+     * @param statusAtual Status atual do pedido
+     * @return Próximo status válido na sequência, ou null se já estiver no status final
+     */
     private static StatusPedido getProximoStatus(StatusPedido statusAtual) {
         switch (statusAtual) {
             case ACEITO:
